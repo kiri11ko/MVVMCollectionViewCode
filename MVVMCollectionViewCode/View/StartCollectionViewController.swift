@@ -48,9 +48,7 @@ class StartCollectionViewController: UIViewController{
         self.view.addSubview(collectionView)
         viewModel = CollectionViewViewModel()
         viewModel?.getJSON()
-        
         viewModel?.isError.addObserver({[weak self] (error) in
-            // display error
             if error != "" {
                 self!.showErrorAlert(error)
             }
@@ -71,6 +69,12 @@ class StartCollectionViewController: UIViewController{
         })
 
     }
+    deinit {
+        viewModel?.isError.removeObserver()
+        viewModel?.isLoading.removeObserver()
+        viewModel?.imageList.removeObserver()
+        
+    }
 }
 
 extension StartCollectionViewController: UICollectionViewDataSource {
@@ -80,7 +84,7 @@ extension StartCollectionViewController: UICollectionViewDataSource {
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! ImageCollectionViewCell
-        cell.moduleImage.image = viewModel?.imageList.value[indexPath.row]  as! UIImage
+        cell.moduleImage.image = (viewModel?.imageList.value[indexPath.row]  as! UIImage)
         return cell
     }
 }

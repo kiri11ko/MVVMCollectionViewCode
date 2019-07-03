@@ -6,8 +6,8 @@
 
 import Foundation
 
-open class Observer<T> {
-    open var value: T {
+class Observer<T> {
+     var value: T {
         didSet {
             DispatchQueue.main.async {
                 self.valueChanged?(self.value)
@@ -15,13 +15,13 @@ open class Observer<T> {
         }
     }
     
-    private var valueChanged: ((T) -> Void)?
+    fileprivate var valueChanged: ((T) -> Void)?
     
     init(value: T) {
         self.value = value
     }
     
-    open func addObserver(enable: Bool = true, _ onChange: ((T) -> Void)?) {
+     func addObserver(enable: Bool = true, _ onChange: ((T) -> Void)?) {
         valueChanged = onChange
         if enable {
             onChange?(value)
