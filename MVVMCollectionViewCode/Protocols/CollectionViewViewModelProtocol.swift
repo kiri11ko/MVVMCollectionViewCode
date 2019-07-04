@@ -8,9 +8,10 @@
 
 import Foundation
 
-protocol CollectionViewViewModelProtocol {
+protocol CollectionViewViewModelProtocol: class {
+    
     var isError: Observer<String> { get set}
     var isLoading: Observer<Bool> {get set}
     var imageList: Observer<[AnyObject]> { get set}
-    
+    func numberOfRows() -> Int
 }

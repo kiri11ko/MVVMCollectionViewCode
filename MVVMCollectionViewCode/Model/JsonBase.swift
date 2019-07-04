@@ -3,20 +3,20 @@
 import Foundation
 
 struct JsonBase : Codable {
-	let data : [JData]?
+	let jDataList : [JData]?
 	let meta : Meta?
 	let pagination : Pagination?
 
 	enum CodingKeys: String, CodingKey {
 
-		case data = "data"
+		case jDataList = "data"
 		case meta = "meta"
 		case pagination = "pagination"
 	}
 
 	init(from decoder: Decoder) throws {
 		let values = try decoder.container(keyedBy: CodingKeys.self)
-		data = try values.decodeIfPresent([JData].self, forKey: .data)
+		jDataList = try values.decodeIfPresent([JData].self, forKey: .jDataList)
 		meta = try values.decodeIfPresent(Meta.self, forKey: .meta)
 		pagination = try values.decodeIfPresent(Pagination.self, forKey: .pagination)
 	}

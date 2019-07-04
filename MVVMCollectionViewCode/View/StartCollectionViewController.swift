@@ -62,7 +62,7 @@ class StartCollectionViewController: UIViewController{
                 }
         })
         
-        viewModel?.imageList.addObserver({ (loading) in
+        viewModel?.imageList.addObserver({ (imageList) in
             DispatchQueue.main.async { [weak self] in
                 self!.collectionView.reloadData()
             }
@@ -80,11 +80,12 @@ class StartCollectionViewController: UIViewController{
 extension StartCollectionViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel?.imageList.value.count ?? 0
+        return viewModel?.numberOfRows() ?? 0
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! ImageCollectionViewCell
-        cell.moduleImage.image = (viewModel?.imageList.value[indexPath.row]  as! UIImage)
+        cell.moduleImage.image = viewModel?.cellViewModel(forIndexPath: indexPath)?.moduleImage 
+//            (viewModel?.imageList.value[indexPath.row]  as! UIImage)
         return cell
     }
 }
