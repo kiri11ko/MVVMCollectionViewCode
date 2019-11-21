@@ -47,7 +47,6 @@ class StartCollectionViewController: UIViewController{
         super.viewDidLoad()
         self.view.addSubview(collectionView)
         viewModel = CollectionViewViewModel()
-        viewModel?.getJSON()
         viewModel?.isError.addObserver({[weak self] (error) in
             if error != "" {
                 self!.showErrorAlert(error)
