@@ -9,9 +9,11 @@
 import Foundation
 
 protocol CollectionViewViewModelProtocol: class {
-    
+
     var isError: Observer<String> { get set}
     var isLoading: Observer<Bool> {get set}
-    var imageList: Observer<[AnyObject]> { get set}
+    var imageList: Observer<[NSObject]> { get set}
     func numberOfRows() -> Int
+    func getJSON()
+    func cellViewModel(forIndex indexPath: IndexPath) -> CollectionViewCellViewModelProtocol?
 }

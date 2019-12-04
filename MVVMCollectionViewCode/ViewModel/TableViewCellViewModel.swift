@@ -6,12 +6,12 @@
 //  Copyright © 2018 Ivan Akulov. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 class CollectionViewCellViewModel: CollectionViewCellViewModelProtocol {
-    internal var moduleImage: UIImage
+    internal var imageObject: NSObject
 
-    init(image: UIImage) {
-        self.moduleImage = image
+    init(image: NSObject) {
+        self.imageObject = image
     }
 }

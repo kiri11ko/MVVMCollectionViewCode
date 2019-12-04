@@ -9,5 +9,5 @@
 import UIKit
 
 protocol CollectionViewCellViewModelProtocol: class {
-    var moduleImage: UIImage { get set }
+    var imageObject: NSObject { get set }
 }

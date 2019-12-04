@@ -14,20 +14,20 @@ class Observer<T> {
             }
         }
     }
-    
+
     fileprivate var valueChanged: ((T) -> Void)?
-    
+
     init(value: T) {
         self.value = value
     }
-    
+
      func addObserver(enable: Bool = true, _ onChange: ((T) -> Void)?) {
         valueChanged = onChange
         if enable {
             onChange?(value)
         }
     }
-    
+
     func removeObserver() {
         valueChanged = nil
     }
